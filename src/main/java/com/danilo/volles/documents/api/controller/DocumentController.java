@@ -1,21 +1,24 @@
 package com.danilo.volles.documents.api.controller;
 
-import com.danilo.volles.documents.api.annotation.ApiController;
 import com.danilo.volles.documents.api.entity.Document;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@ApiController
+@RestController
+@RequestMapping("/documents")
 @RequiredArgsConstructor
 public class DocumentController {
 
     private final DocumentProducer producer;
 
-    @PostMapping("/documents")
+    @PostMapping("/send")
     public ResponseEntity<String> sendDocument(@RequestBody Document document) {
+        System.out.println(document.getAuthor());
         producer.sendDocument(document);
-        return ResponseEntity.ok("Document successfully sent: " + document.toString());
+        return ResponseEntity.ok("Document successfully sent: " + document);
     }
 }
