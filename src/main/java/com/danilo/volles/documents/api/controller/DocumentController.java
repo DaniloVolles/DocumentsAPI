@@ -1,5 +1,6 @@
 package com.danilo.volles.documents.api.controller;
 
+import com.danilo.volles.documents.api.dto.ApiResponseWrapper;
 import com.danilo.volles.documents.api.entity.Document;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,8 @@ public class DocumentController {
     private final DocumentProducer producer;
 
     @PostMapping("/send")
-    public ResponseEntity<String> sendDocument(@RequestBody Document document) {
+    public ResponseEntity<ApiResponseWrapper> sendDocument(@RequestBody Document document) {
         producer.sendDocument(document);
-        return ResponseEntity.ok("Document successfully sent: " + document);
+        return ResponseEntity.ok(new ApiResponseWrapper("DOCUMENT SUCCESSFULLY SENT", document));
     }
 }
