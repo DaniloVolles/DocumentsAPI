@@ -1,12 +1,14 @@
 package com.danilo.volles.documents.api.controller;
 
 import com.danilo.volles.documents.api.entity.Document;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implements a simple PRODUCER for KAFKA flow
+ */
 @Slf4j
 @Service
 public class DocumentProducer {
