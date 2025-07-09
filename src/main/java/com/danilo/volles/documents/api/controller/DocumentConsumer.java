@@ -10,11 +10,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class DocumentConsumer {
 
-    private static final String TOPIC = "document";
+    private static final String TOPIC = "documents";
 
-    @KafkaListener(topics = TOPIC, groupId = "documents-group")
+    @KafkaListener(
+            topics = TOPIC,
+            groupId = "documents-group",
+            containerFactory = "documentKafkaListenerContainerFactory"
+    )
     public void documentListener(@Payload Document document){
-        System.out.println("@@@@@ document received: " + document);
+        System.out.println("$$$$$ document received: " + document);
 //        log.info("@@@@@ Received Document: {}", document);
     }
 }

@@ -17,7 +17,6 @@ public class DocumentController {
 
     @PostMapping("/send")
     public ResponseEntity<String> sendDocument(@RequestBody Document document) {
-        System.out.println(document.getAuthor());
         producer.sendDocument(document);
         return ResponseEntity.ok("Document successfully sent: " + document);
     }
