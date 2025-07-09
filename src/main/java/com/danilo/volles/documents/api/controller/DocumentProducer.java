@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-//@RequiredArgsConstructor
 public class DocumentProducer {
 
     private final KafkaTemplate<String, Document> kafkaTemplate;
@@ -23,6 +22,6 @@ public class DocumentProducer {
 
     public void sendDocument(Document document) {
         kafkaTemplate.send(TOPIC, document);
-        System.out.println("@@@@@ document sent: " + document);
+        log.warn("@@@ DOCUMENT SENT: {}", document);
     }
 }

@@ -19,3 +19,4 @@ spring:
 topic:
   name:
     producer: documents
+    consumer: documents

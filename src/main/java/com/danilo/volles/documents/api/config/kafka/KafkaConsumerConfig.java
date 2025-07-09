@@ -26,15 +26,16 @@ public class KafkaConsumerConfig {
     @Bean
     public ConsumerFactory<String, Document> documentConsumerFactory() {
 
-        JsonDeserializer<Document> deserializer = new JsonDeserializer<>(Document.class);
-        deserializer.addTrustedPackages("com.danilo.volles.documents.api.entity");
-
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(configProps, new StringDeserializer(), deserializer);
+        return new DefaultKafkaConsumerFactory<>(
+                configProps,
+                new StringDeserializer(),
+                new JsonDeserializer<>(Document.class)
+        );
     }
 
     @Bean
