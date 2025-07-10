@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: DocumentsAPI
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: document-group
+      auto-offset-reset: earliest
+
+    listener:
+      missing-topics-fatal: false
+
+topic:
+  name:
+    producer: documents
+    consumer: documents
